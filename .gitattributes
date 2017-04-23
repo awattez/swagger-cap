@@ -1,0 +1,14 @@
+* text=auto
+*.txt text
+*.c text
+*.h text
+*.js text
+*.json text
+*.jpg binary
+*.jsp text
+*.css text
+*.xml text
+*.java text
+*.json text
+*.html text
+*.sh text

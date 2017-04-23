@@ -1,0 +1,186 @@
+swagger: '2.0' # 2.0 de swagger
+
+# Ce sont les métadonnées de votre document
+info:
+  version: "1.0.0"
+  title: The Capgemini Movie Database
+
+basePath: /api # Chemin d'accès relatif ou tous les appels API seront effectués 
+
+#accept:
+#  - application/json
+#  - application/xhtml+xml
+#produces:
+#  - application/json
+
+# Décrivez vos routes ici
+paths:
+  # ceci est un endpoint
+  /movies:
+    # Ceci est un appel HTTP
+    get:      
+      # Décrivez cet appel ici. Remarque: vous pouvez utiliser du markdown
+      description: Retourne tous les films
+      operationId: getMovies
+      # Réponses attendues pour cette appel:
+      responses:
+        # Le code de la réponse
+        200:
+          description: Successful response
+          # Un schema permet de decrire un objet de la reponse
+          # Vous pouvez utiliser le JSON Schema Format
+          schema:
+            title: ArrayOfMovies
+            type: array
+            items:
+               $ref: '#/definitions/movie'
+        default:
+          description: Erreur inattendue
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      description: Ajouter un nouveau film
+      operationId: addMovie
+      parameters:
+        - name: movie
+          in: body
+          description: Le nouveau film
+          required: true
+          schema:
+            $ref: '#/definitions/movie'
+      responses:
+        201:
+          description: Le nouveau film
+          schema:
+            $ref: '#/definitions/movie'
+        default:
+          description: Erreur inattendue
+          schema:
+            $ref: '#/definitions/error'
+  /movies/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: ID du film
+        required: true
+        type: integer
+        format: int64
+    get:
+      description: Retourne un seul film
+      operationId: getMovieById
+      responses:
+        200:
+          description: Réponse OK
+          schema:
+             $ref: '#/definitions/movie'
+        204:
+          description : Aucun element
+          schema:
+             $ref: '#/definitions/movie'
+        default:
+          description: Erreur inattendue
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      description: Mettre à jour un film existant
+      operationId: updateMovieById
+      parameters:
+        - name: movie
+          in: body
+          description: Le film
+          required: true
+          schema:
+            $ref: '#/definitions/movie'
+      responses:
+        200:
+          description: Le nouveau film
+          schema:
+            $ref: '#/definitions/movie'
+        default:
+          description: Erreur inattendue
+          schema:
+            $ref: '#/definitions/error'
+    delete:
+      description: Supprimer un film
+      operationId: deleteMovieById
+      responses:
+        204:
+          description: Film supprimé
+        default:
+          description: Erreur inattendue
+          schema:
+            $ref: '#/definitions/error'
+definitions:
+  error:
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: object
+  movie:
+    type: object
+    required:
+      - id
+      - title
+    properties:
+      id:
+        type: integer
+        format: int64
+      title:
+        type: string
+      ratings:
+        type: object
+        properties:
+          criticsScore:
+            type: integer
+            minimum: 0
+            maximum: 100
+          audienceScore:
+            type: integer
+            minimum: 0
+            maximum: 100
+      criticsConsensus:
+        type: string
+      Directors:
+        type: array
+        items:
+          type: string
+      Actors:
+        type: array
+        items:
+           $ref: '#/definitions/actors'
+      posters:
+        $ref: '#/definitions/posters'
+  actors:
+    type: object
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      pictures:
+        type: array
+        items:
+          type: string
+          format: uri
+  posters:
+    properties:
+      thumbnail:
+        type: string
+        format: uri
+      profile:
+        type: string
+        format: uri
+      detailed:
+        type: string
+        format: uri
+      original:
+        type: string
+        format: uri
