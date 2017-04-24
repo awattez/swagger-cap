@@ -30,7 +30,7 @@ node .
 java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate \
    -i ../swagger-movies.yaml \
    -l java \
-   -o ../swagger-movies-client-java-bis
+   -o ../swagger-movies-client-java
 
 
 #Server
@@ -38,7 +38,7 @@ java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate \
 java -jar modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate \
    -i ../swagger-movies.yaml \
    -l spring \
-   -o ../swagger-movies-server-java-bis
+   -o ../swagger-movies-server-java
 
 
 <dependency>
