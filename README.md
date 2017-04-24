@@ -57,7 +57,6 @@ Le serveur SpringBoot généré via Swagger CodeGen ci-dessus est compatible ave
 Vous pouvez retrouver le swagger du serveur à l'URL suivante:
 http://localhost:8080/api/api-docs
 
-SpringFox permet également de fournir un visualisation Swagger UI grace à la dependance suivante :
  ```xml
 <dependency>
    <groupId>io.springfox</groupId>
@@ -66,9 +65,8 @@ SpringFox permet également de fournir un visualisation Swagger UI grace à la d
 </dependency>
 ```
 
-Vous pouvez retrouver la documentation à l'URL suivante:
-http://localhost:8080/api/swagger-ui.html
 
+SpringFox permet également de fournir un visualisation Swagger UI grace à la dependance suivante :
  ```xml
 <dependency>
     <groupId>io.springfox</groupId>
@@ -76,6 +74,9 @@ http://localhost:8080/api/swagger-ui.html
     <version>${springfox-version}</version>
 </dependency>
 ```
+
+Vous pouvez retrouver la documentation à l'URL suivante:
+http://localhost:8080/api/swagger-ui.html
 
 ## Réferences
 
