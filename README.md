@@ -67,7 +67,6 @@ SpringFox permet également de fournir un visualisation Swagger UI grace à la d
 ```
 
 Vous pouvez retrouver la documentation à l'URL suivante:
-
 http://localhost:8080/api/swagger-ui.html
 
  ```xml
